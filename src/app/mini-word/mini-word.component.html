@@ -1,0 +1,36 @@
+<div class="relative pt-8 flex justify-center text-indigo-900 bg-gray-100">
+    <img src="assets/mini-word.png" alt="Logo" class="absolute top-0 left-0 w-24 h-20" />
+
+    <div class="flex items-center mb-5">
+        <label for="colorPicker" class="mr-2">Couleur du texte:</label>
+        <input type="color" id="colorPicker" [(ngModel)]="textColor" (input)="applyStyles()" class="border border-indigo-900 p-1 rounded" />
+    </div>
+    
+    <div class="flex items-center mb-5 ml-10">
+        <label for="fontSize" class="mr-2">Taille de la police:</label>
+        <input type="number" id="fontSize" [(ngModel)]="fontSize" (input)="applyStyles()" class="border p-1 rounded border-indigo-900" />
+    </div>
+    
+    <div class="flex items-center mb-5 ml-10">
+        <label for="fontFamily" class="mr-2">Police:</label>
+        <select id="fontFamily" [(ngModel)]="selectedFont" (change)="applyStyles()" class="border border-indigo-900 p-1 rounded">
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Impact">Impact</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+        </select>
+    </div>
+</div>
+<hr class="border-indigo-900">
+<div class="flex justify-center">
+    <div class="pt-40 w-100">
+        <div contenteditable="true" [style]="textStyles" class="text-center border p-4 rounded border-indigo-900">
+            Ceci est un paragraphe de démonstration. Vous pouvez éditer ce texte.
+        </div>
+    </div>
+</div>
