@@ -1,7 +1,3 @@
 <ul class="max-w-md divide-y divide-pastel2 light:divide-gray-700">
-    <app-list-item></app-list-item>
-    <app-list-item></app-list-item>
-    <app-list-item></app-list-item>
-    <app-list-item></app-list-item>
-    <app-list-item></app-list-item>
+    <app-list-item (selected)="personSelected($event)" *ngFor="let person of persons" [person]="person"></app-list-item>
 </ul>

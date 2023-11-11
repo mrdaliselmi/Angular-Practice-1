@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Person } from '../../models/person.model';
 
 @Component({
   selector: 'app-cv-details',
@@ -9,5 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cv-details.component.css'
 })
 export class CvDetailsComponent {
-
+  @Input() person?: Person;
 }

@@ -1,13 +1,26 @@
-<div class="card">
+<div *ngIf="person" class="card">
     <div class="card-side front">
         <div class="flex flex-col items-center pb-10">
-            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg"
-                alt="Profile image" />
-            <h5 class="mb-1 text-xl font-medium text-gray-900 light:text-white">Bonnie Green</h5>
-            <span class="text-sm text-gray-500 light:text-gray-400">Visual Designer</span>
+            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{person?.imagePath}}" alt="Profile image" />
+            <h5 class="mb-1 text-xl font-medium text-gray-900 light:text-white">
+                {{person?.firstName}} {{person?.lastName}}
+            </h5>
+            <span class="text-sm text-gray-500">
+                {{person?.occupation}}
+            </span>
+            <p class="text-sm text-gray-500 pt-4">
+                "{{person?.quote}}"
+            </p>
         </div>
     </div>
     <div class="card-side back">
         <div>Back Side</div>
+    </div>
+</div>
+<div *ngIf="!person" class="card flex">
+    <div class="card-side bg-pastel1">
+        <div class="text-pastel3">
+            Select a person to see details
+        </div>
     </div>
 </div>
