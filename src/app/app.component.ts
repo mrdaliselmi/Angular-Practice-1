@@ -5,6 +5,7 @@ import { MiniWordComponent } from './mini-word/mini-word.component';
 import { FormsModule } from '@angular/forms';
 import { RainbowStyleWriterComponent } from './rainbow-style-writer/rainbow-style-writer.component';
 import { CvComponent } from './CvTech/cv/cv.component';
+import { DetailComponent } from './CvTech/detail/detail.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { CvComponent } from './CvTech/cv/cv.component';
     FormsModule,
     RainbowStyleWriterComponent,
     CvComponent,
+    DetailComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Person } from '../../models/person.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CvService {
   private persons: Person[] = [];
-  constructor() {
+  constructor(
+    private toastr: ToastrService
+  ) {
     this.persons = [
       new Person(
         1,
@@ -64,4 +67,20 @@ export class CvService {
   getPersons(): Person[] {
     return this.persons;
   }
+
+  getPersonById(id: number): Person | undefined {
+    return this.persons.find((person) => person.id == id);
+  }
+
+  deletePersonById(id: number): boolean {
+    const index = this.persons.findIndex((person) => person.id == id);
+    if (index === -1) {
+      return false;
+    } else {
+      this.toastr.success(`${this.persons[index]['firstName']}'s cv deleted successfully`, '', { timeOut: 1000, toastClass: 'absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-900 p-4 rounded-md bg-green-300' });
+      this.persons.splice(index, 1);
+      return true;
+    }
+  }
+
 }

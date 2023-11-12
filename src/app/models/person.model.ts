@@ -8,6 +8,7 @@ export class Person{
     cin?: number;
     quote?: string;
     constructor(id = 0,firstName = '', lastName = '', age = 0, occupation = '', imagePath = '', cin = 0, quote = ''){
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;

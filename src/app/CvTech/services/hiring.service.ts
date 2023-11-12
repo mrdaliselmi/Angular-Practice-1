@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Person } from '../../models/person.model';
 import { ToastrService } from 'ngx-toastr';
-import { CvComponent } from '../cv/cv.component';
 
 @Injectable({
   providedIn: 'root',
