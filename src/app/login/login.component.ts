@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router'; // Import the Router
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,11 @@ import { AuthService } from '../services/auth.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  isAuthenticated: boolean = false;
+ isAuthenticated: boolean = false;
   email: string = '';
   password: string = '';
 
-  constructor(
+  constructor(private router: Router,
     private authService: AuthService,
     private toastr: ToastrService,
   ) { }
@@ -25,13 +26,26 @@ export class LoginComponent implements OnInit {
       this.isAuthenticated = isAuthenticated;
     });
   }
+
   login(){
-    console.log("email",this.email);
-    console.log("password",this.password);
-  }
+
+    this.authService.loginUser(this.email, this.password).subscribe(
+      (response) => {
+        console.log('Login successful:', response);
+        // Access the content of the response here
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        console.error('Error during login:', error);
+        // Handle errors here
+
+      }
+    );  }
 
   logout(){
     this.authService.logoutUser();
     this.toastr.success('You have been logged out');
+    this.router.navigate(['/login']);
+    this.isAuthenticated = false;
   }
 }
