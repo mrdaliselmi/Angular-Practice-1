@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Person } from '../../models/person.model';
 import { HiringService } from '../services/hiring.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cv-details',

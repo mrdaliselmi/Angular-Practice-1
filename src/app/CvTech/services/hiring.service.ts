@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Person } from '../../models/person.model';
+import { ToastrService } from 'ngx-toastr';
+import { CvComponent } from '../cv/cv.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HiringService {
   private persons: Person[] = [];
-  constructor() {}
+  constructor(
+    private toastr: ToastrService
+  ) {}
 
   getHired(): Person[] {
     return this.persons;
@@ -17,14 +21,14 @@ export class HiringService {
     if (index === -1) {
       this.persons.push(person);
     } else {
-      alert(`${person.firstName} is already hired!`);
+      this.toastr.warning(`${person.firstName} is already hired!`, '', { timeOut: 1000, toastClass: 'absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-900 p-4 rounded-md bg-yellow-200' });
     }
   }
 
   fire(person: Person): void {
     const index = this.persons.findIndex((p) => p.id === person.id);
     if (index === -1) {
-      alert(`${person.firstName} is not hired!`);
+      this.toastr.warning(`${person.firstName} is not hired!`, '', { timeOut: 1000, toastClass: 'absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-900 p-4 rounded-md bg-yellow-200' });
     } else {
       this.persons.splice(index, 1);
     }

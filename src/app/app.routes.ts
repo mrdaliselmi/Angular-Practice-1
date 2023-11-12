@@ -7,4 +7,6 @@ export const routes: Routes = [
     { path: 'cv', component: CvComponent },
     {path: 'mini-word', component: MiniWordComponent},
     {path: 'rainbow', component: RainbowStyleWriterComponent},
+    {path: '', redirectTo: '/cv', pathMatch: 'full'},
+    {path: '**', redirectTo: '/cv', pathMatch: 'full'}
 ];
