@@ -3,8 +3,10 @@ import { CvComponent } from './CvTech/cv/cv.component';
 import { MiniWordComponent } from './mini-word/mini-word.component';
 import { RainbowStyleWriterComponent } from './rainbow-style-writer/rainbow-style-writer.component';
 import { DetailComponent } from './CvTech/detail/detail.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
+    {path: 'login', component: LoginComponent},
     {path: 'cv/:id', component: DetailComponent},
     { path: 'cv', component: CvComponent },
     {path: 'mini-word', component: MiniWordComponent},

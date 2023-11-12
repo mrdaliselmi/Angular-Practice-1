@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RainbowStyleWriterComponent } from './rainbow-style-writer/rainbow-style-writer.component';
 import { CvComponent } from './CvTech/cv/cv.component';
 import { DetailComponent } from './CvTech/detail/detail.component';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { DetailComponent } from './CvTech/detail/detail.component';
     RainbowStyleWriterComponent,
     CvComponent,
     DetailComponent,
+    LoginComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
