@@ -1,9 +1,18 @@
-<div class="flex mx-auto max-w-screen-lg mt-10">
-    <div class="w-1/3 p-4 border-r border-pastel2">
-        <app-list (selected)="personSelected($event)" [persons]="persons"></app-list>
-    </div>
+<div>
+    <div class="flex mx-auto max-w-screen-lg mt-10">
+        <div class="w-1/3 p-4 border-r border-pastel2">
+            <app-list (selected)="personSelected($event)" [persons]="persons"></app-list>
+        </div>
 
-    <div class="w-2/3 p-4 text-center">
-        <app-cv-details [person]="selectedPerson"></app-cv-details>
+        <div class="w-2/3 p-4 text-center">
+            <app-cv-details [person]="selectedPerson"></app-cv-details>
+        </div>
+    </div>
+    <hr class="border-pastel2 mx-auto lg:w-4/5 sm:w-full">
+    <div class="mx-auto max-w-screen-lg pl-5">
+        <h1 class="text-bold text-pastel4 text-lg">
+            Hired
+        </h1>
+        <app-hiring></app-hiring>
     </div>
 </div>

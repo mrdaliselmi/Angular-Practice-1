@@ -1,0 +1,29 @@
+<div  *ngIf="persons" >
+    <div *ngFor="let person of persons" class="rounded cursor-pointer hover:bg-pastel1 p-2 focus:bg-pastel2" tabindex="{{person.id}}">
+        <div class="flex items-center space-x-4 rtl:space-x-reverse">
+            <div class="flex-shrink-0">
+                <img class="w-8 h-8 rounded-full" src="{{ person?.imagePath}}"
+                    alt="Neil image">
+            </div>
+            <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-gray-900 truncate light:text-white">
+                    {{ person?.firstName }} {{ person?.lastName }}
+                </p>
+                <p class="text-sm text-gray-500 truncate light:text-gray-400">
+                    {{ person?.occupation }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div  *ngIf="persons.length==0" >
+    <div class="rounded bg-pastel1">
+        <div class="flex items-center space-x-4 rtl:space-x-reverse">
+            <div class="flex-1 min-w-0 text-center text-pastel4">
+                <p>
+                    Hire someone to get started
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

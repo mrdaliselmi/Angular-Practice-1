@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Person } from '../../models/person.model';
+import { HiringService } from '../services/hiring.service';
 
 @Component({
   selector: 'app-cv-details',
@@ -11,4 +12,13 @@ import { Person } from '../../models/person.model';
 })
 export class CvDetailsComponent {
   @Input() person?: Person;
+
+  constructor(
+    private hiringService: HiringService,
+  ) {}
+  hire() {
+    if (this.person) {
+    this.hiringService.hire(this.person);
+    }
+  }
 }
