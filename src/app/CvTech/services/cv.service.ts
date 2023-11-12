@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Person } from '../../models/person.model';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from './api.service';
+import { ApiService } from '../../services/api.service'
 
 @Injectable({
   providedIn: 'root',

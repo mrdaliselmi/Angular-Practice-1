@@ -44,11 +44,17 @@
     </div>
 
     <button 
-        (click)="submit()"
+        (click)="login()"
         type="submit"
         [disabled]="myForm.invalid"
         class="text-white bg-pastel4 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
     Submit
     </button>
+    <!-- <div *ngIf="!isAuthenticated">
+      <button (click)="login()">Login</button>
+    </div>
+    <div *ngIf="isAuthenticated">
+      <a (click)="logout()">Logout</a>
+    </div> -->
 </form>
 </div>

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +11,27 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  isAuthenticated: boolean = false;
   email: string = '';
   password: string = '';
 
-  submit(){
+  constructor(
+    private authService: AuthService,
+    private toastr: ToastrService,
+  ) { }
+  ngOnInit(): void {
+    this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+    });
+  }
+  login(){
     console.log("email",this.email);
     console.log("password",this.password);
+  }
+
+  logout(){
+    this.authService.logoutUser();
+    this.toastr.success('You have been logged out');
   }
 }
