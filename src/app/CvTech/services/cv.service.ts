@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Person } from '../../models/person.model';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +9,18 @@ import { ToastrService } from 'ngx-toastr';
 export class CvService {
   private persons: Person[] = [];
   constructor(
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private apiService: ApiService,
   ) {
+
+    this.apiService.getUsers().subscribe({
+      next: (data) => { this.handleApiSuccess(data); },
+      error: (error) => { this.handleError(error)},
+   });
+  }
+  handleError(error: any) {
+    this.toastr.warning('An error occurred while fetching user data.', 'Error',{ timeOut: 1000, toastClass: 'absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-900 p-4 rounded-md bg-red-300' });
+    console.log('Error fetching user data:', error);
     this.persons = [
       new Person(
         1,
@@ -62,6 +73,21 @@ export class CvService {
         "I'm trained to stand confidently here."
       ),
     ];
+  }
+  handleApiSuccess(data: any) {
+    for (const user of data) {
+            this.persons.push(
+              new Person(
+                user.id,
+                user.firstname,
+                user.name,
+                user.age,
+                user.job,
+                user.path,
+                user.cin,
+              )
+            );
+          }
   }
 
   getPersons(): Person[] {
