@@ -8,6 +8,8 @@ import { CvComponent } from './CvTech/cv/cv.component';
 import { DetailComponent } from './CvTech/detail/detail.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -30,4 +32,15 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'TP1';
+  isAuthenticated: boolean = false;
+  constructor(
+    private authService: AuthService,
+    private zone: NgZone,
+  ) {
+    this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
+      this.zone.run(() => {
+        this.isAuthenticated = isAuthenticated;
+      });
+    });
+  }
 }

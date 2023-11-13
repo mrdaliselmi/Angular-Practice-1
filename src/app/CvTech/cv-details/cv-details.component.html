@@ -1,58 +1,71 @@
 <div *ngIf="person" class="card">
-    <div class="card-side front">
-        <div class="flex flex-col items-center pb-10">
-            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ person.imagePath }}" alt="Profile image" />
-            <h5 class="mb-1 text-xl font-medium text-gray-900 light:text-white">
-                {{person.firstName}} {{person.lastName}}
-            </h5>
-            <span class="text-sm text-gray-500">
-                {{person.occupation}}
-            </span>
-            <p class="text-sm text-gray-500 pt-4">
-                "{{person.quote}}"
-            </p>
-        </div>
+  <div class="card-side front">
+    <div class="flex flex-col items-center pb-10">
+      <img
+        class="w-24 h-24 mb-3 rounded-full shadow-lg"
+        src="{{ person.imagePath }}"
+        alt="Profile image"
+      />
+      <h5 class="mb-1 text-xl font-medium text-gray-900 light:text-white">
+        {{ person.firstName }} {{ person.lastName }}
+      </h5>
+      <span class="text-sm text-gray-500">
+        {{ person.occupation }}
+      </span>
+      <p class="text-sm text-gray-500 pt-4">"{{ person.quote }}"</p>
     </div>
-    <div class="card-side back">
-        <div class="flex flex-col items-center">
-            <div class="flex-shrink-0">
-                <img class="w-8 h-8 rounded-full" src="{{ person.imagePath }}" alt="Neil image">
-            </div>
-            <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium text-gray-900 truncate light:text-white">
-                    {{ person.firstName }} {{ person.lastName }}
-                </p>
-                <p class="text-sm text-gray-500 truncate light:text-gray-400">
-                    {{ person.occupation }}
-                </p>
-            </div>
-            <div class="flex items-start text-start text-gray-900 light:text-white pt-10">
-                <p>
-                    <span style="font-weight:bold">FirstName :</span> {{ person.firstName }} <br>
-                    <span style="font-weight:bold">LastName :</span> {{ person.lastName }} <br>
-                    <span style="font-weight:bold">Occupation :</span> {{ person.occupation }} <br>
-                    <span style="font-weight:bold">Age :</span> {{ person.age }} <br>
-                </p>
-            </div>
-            <div class="flex">
-                <button type="button"
-                    class="text-white bg-pastel4 hover:bg-pastel5 font-medium rounded-lg text-sm px-5 py-2.5 mt-5"
-                    (click)="hire()">
-                    Hire Now
-                </button>
-                <button type="button"
-                    class="text-pastel4 bg-pastel2 hover:bg-pastel4 hover:text-pastel2 border border-pastel4 font-medium rounded-lg text-sm px-5 py-2.5 mt-5 ml-2"
-                    (click)="moreDetails()">
-                    More details
-                </button>
-            </div>
-        </div>
+  </div>
+  <div class="card-side back">
+    <div class="flex flex-col items-center">
+      <div class="flex-shrink-0">
+        <img
+          class="w-8 h-8 rounded-full"
+          src="{{ person.imagePath }}"
+          alt="Neil image"
+        />
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="text-sm font-medium text-gray-900 truncate light:text-white">
+          {{ person.firstName }} {{ person.lastName }}
+        </p>
+        <p class="text-sm text-gray-500 truncate light:text-gray-400">
+          {{ person.occupation }}
+        </p>
+      </div>
+      <div
+        class="flex items-start text-start text-gray-900 light:text-white pt-10"
+      >
+        <p>
+          <span style="font-weight: bold">FirstName :</span>
+          {{ person.firstName }} <br />
+          <span style="font-weight: bold">LastName :</span>
+          {{ person.lastName }} <br />
+          <span style="font-weight: bold">Occupation :</span>
+          {{ person.occupation }} <br />
+          <span style="font-weight: bold">Age :</span> {{ person.age }} <br />
+        </p>
+      </div>
+      <div class="flex">
+        <button
+          type="button"
+          class="text-white bg-pastel4 hover:bg-pastel5 font-medium rounded-lg text-sm px-5 py-2.5 mt-5"
+          (click)="hire()"
+        >
+          Hire Now
+        </button>
+        <button
+          type="button"
+          class="text-pastel4 bg-pastel2 hover:bg-pastel4 hover:text-pastel2 border border-pastel4 font-medium rounded-lg text-sm px-5 py-2.5 mt-5 ml-2"
+          (click)="moreDetails()"
+        >
+          More details
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <div *ngIf="!person" class="card flex">
-    <div class="card-side bg-pastel1">
-        <div class="text-pastel3">
-            Select a person to see details
-        </div>
-    </div>
+  <div class="card-side bg-pastel1">
+    <div class="text-pastel3">Select a person to see details</div>
+  </div>
 </div>

@@ -1,54 +1,90 @@
 <div class="mx-auto justify-center lg:mt-20 sm:mt-5 lg:w-2/5 sm:w-4/5">
-<form #myForm="ngForm">
+  <form #myForm="ngForm">
     <div class="mb-6">
-        <label for="input-group-1" class="block mb-2 text-sm font-medium text-gray-900 ">Your Email</label>
-        <div class="relative">
-          <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
-                <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
-            </svg>
-          </div>
-          <input 
+      <label
+        for="input-group-1"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Your Email</label
+      >
+      <div class="relative">
+        <div
+          class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+        >
+          <svg
+            class="w-4 h-4 text-gray-500"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 16"
+          >
+            <path
+              d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"
+            />
+            <path
+              d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"
+            />
+          </svg>
+        </div>
+        <input
           required
           email
-          type="text" 
-          id="name" 
+          type="text"
+          id="name"
           name="email"
           [(ngModel)]="email"
           #emailaddress="ngModel"
-          [ngClass]="{ 'bg-red-50 border border-red-500 text-red-900': emailaddress.invalid && (emailaddress.dirty || emailaddress.touched) }"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
-          placeholder="name@example.com">
-        </div>
-        <p *ngIf="emailaddress.invalid && (emailaddress.dirty || emailaddress.touched)" class="mt-2 text-sm text-red-600 dark:text-red-500">
-          invalid email address
+          [ngClass]="{
+            'bg-red-50 border border-red-500 text-red-900':
+              emailaddress.invalid &&
+              (emailaddress.dirty || emailaddress.touched)
+          }"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+          placeholder="name@example.com"
+        />
+      </div>
+      <p
+        *ngIf="
+          emailaddress.invalid && (emailaddress.dirty || emailaddress.touched)
+        "
+        class="mt-2 text-sm text-red-600 dark:text-red-500"
+      >
+        invalid email address
       </p>
     </div>
     <div class="mb-6">
-        <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-        <input 
+      <label for="password" class="block mb-2 text-sm font-medium text-gray-900"
+        >Password</label
+      >
+      <input
         required
         minlength="4"
         [(ngModel)]="password"
         #pwd="ngModel"
         name="password"
-        type="password" 
-        id="password" 
-        [ngClass]="{ 'bg-red-50 border border-red-500 text-red-900': pwd.invalid && (pwd.dirty || pwd.touched) }"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
-        placeholder="•••••••••">
-        <p *ngIf="pwd.invalid && (pwd.dirty || pwd.touched)" class="mt-2 text-sm text-red-600 dark:text-red-500">
-            password must be at least 4 characters
-        </p>
+        type="password"
+        id="password"
+        [ngClass]="{
+          'bg-red-50 border border-red-500 text-red-900':
+            pwd.invalid && (pwd.dirty || pwd.touched)
+        }"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="•••••••••"
+      />
+      <p
+        *ngIf="pwd.invalid && (pwd.dirty || pwd.touched)"
+        class="mt-2 text-sm text-red-600 dark:text-red-500"
+      >
+        password must be at least 4 characters
+      </p>
     </div>
 
-    <button 
-        (click)="login()"
-        type="submit"
-        [disabled]="myForm.invalid"
-        class="text-white bg-pastel4 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
-    Submit
+    <button
+      (click)="login()"
+      type="submit"
+      [disabled]="myForm.invalid"
+      class="text-white bg-pastel4 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+    >
+      Submit
     </button>
     <!-- <div *ngIf="!isAuthenticated">
       <button (click)="login()">Login</button>
@@ -56,5 +92,5 @@
     <div *ngIf="isAuthenticated">
       <a (click)="logout()">Logout</a>
     </div> -->
-</form>
+  </form>
 </div>

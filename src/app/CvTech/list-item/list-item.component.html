@@ -1,22 +1,42 @@
-<li class="rounded cursor-pointer hover:bg-pastel1 p-2 focus:bg-pastel2 " tabindex="{{ person?.id }}"
-    (click)="sendPerson()">
-    <div class="flex items-center space-x-4 rtl:space-x-reverse">
-        <div class="flex-shrink-0">
-            <img class="w-8 h-8 rounded-full" src="{{ person?.imagePath}}"
-                alt="Neil image">
-        </div>
-        <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-gray-900 truncate light:text-white">
-                {{ person?.firstName }} {{ person?.lastName }}
-            </p>
-            <p class="text-sm text-gray-500 truncate light:text-gray-400">
-                {{ person?.occupation }}
-            </p>
-        </div>
-        <div class="inline-flex items-center text-base font-semibold text-gray-900 light:text-white">
-            <svg class="w-6 h-6 text-pastel3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"/>
-            </svg>
-        </div>
+<li
+  class="rounded cursor-pointer hover:bg-pastel1 p-2 focus:bg-pastel2"
+  tabindex="{{ person?.id }}"
+  (click)="sendPerson()"
+>
+  <div class="flex items-center space-x-4 rtl:space-x-reverse">
+    <div class="flex-shrink-0">
+      <img
+        class="w-8 h-8 rounded-full"
+        src="{{ person?.imagePath }}"
+        alt="Neil image"
+      />
     </div>
+    <div class="flex-1 min-w-0">
+      <p class="text-sm font-medium text-gray-900 truncate light:text-white">
+        {{ person?.firstName }} {{ person?.lastName }}
+      </p>
+      <p class="text-sm text-gray-500 truncate light:text-gray-400">
+        {{ person?.occupation }}
+      </p>
+    </div>
+    <div
+      class="inline-flex items-center text-base font-semibold text-gray-900 light:text-white"
+    >
+      <svg
+        class="w-6 h-6 text-pastel3"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 8 14"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
+        />
+      </svg>
+    </div>
+  </div>
 </li>

@@ -14,6 +14,7 @@ import { HiringComponent } from '../hiring/hiring.component';
   styleUrl: './cv.component.css',
 })
 export class CvComponent implements OnInit {
+  isAuthenticated: boolean = false;
   persons: Person[] = [];
   selectedPerson?: Person;
   constructor(private cvService: CvService) {}
