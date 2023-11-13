@@ -15,7 +15,10 @@ import { Router } from '@angular/router';
 export class CvDetailsComponent {
   @Input() person?: Person;
 
-  constructor(private hiringService: HiringService, private router: Router) {}
+  constructor(
+    private hiringService: HiringService,
+    private router: Router,
+  ) {}
   hire() {
     if (this.person) {
       this.hiringService.hire(this.person);

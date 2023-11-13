@@ -8,15 +8,14 @@ import { Person } from '../../models/person.model';
   standalone: true,
   imports: [CommonModule, ListItemComponent],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.css'
+  styleUrl: './list.component.css',
 })
 export class ListComponent {
   @Input() persons: Person[] = [];
   @Output() selected = new EventEmitter<Person>();
-  constructor() { }
-  
+  constructor() {}
+
   personSelected(person: Person) {
     this.selected.emit(person);
   }
-
 }

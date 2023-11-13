@@ -6,11 +6,11 @@ import { DetailComponent } from './CvTech/detail/detail.component';
 import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
-    {path: 'login', component: LoginComponent},
-  {path: 'cv/:id', component: DetailComponent},
-    { path: 'cv', component: CvComponent },
-    {path: 'mini-word', component: MiniWordComponent},
-    {path: 'rainbow', component: RainbowStyleWriterComponent},
-    {path: '', redirectTo: '/cv', pathMatch: 'full'},
-    {path: '**', redirectTo: '/cv', pathMatch: 'full'}
+  { path: 'login', component: LoginComponent },
+  { path: 'cv/:id', component: DetailComponent },
+  { path: 'cv', component: CvComponent },
+  { path: 'mini-word', component: MiniWordComponent },
+  { path: 'rainbow', component: RainbowStyleWriterComponent },
+  { path: '', redirectTo: '/cv', pathMatch: 'full' },
+  { path: '**', redirectTo: '/cv', pathMatch: 'full' },
 ];

@@ -17,9 +17,7 @@ export class CvComponent implements OnInit {
   isAuthenticated: boolean = false;
   persons: Person[] = [];
   selectedPerson?: Person;
-  constructor(private cvService: CvService,) {
-
-  }
+  constructor(private cvService: CvService) {}
 
   ngOnInit(): void {
     this.persons = this.cvService.getPersons();

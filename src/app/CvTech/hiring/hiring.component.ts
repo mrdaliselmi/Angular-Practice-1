@@ -8,17 +8,13 @@ import { HiringService } from '../services/hiring.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './hiring.component.html',
-  styleUrl: './hiring.component.css'
+  styleUrl: './hiring.component.css',
 })
 export class HiringComponent implements OnInit {
-
   persons: Person[] = [];
-  constructor(
-    private hiringService: HiringService,
-  ) { }
+  constructor(private hiringService: HiringService) {}
 
   ngOnInit() {
     this.persons = this.hiringService.getHired();
   }
-
 }
