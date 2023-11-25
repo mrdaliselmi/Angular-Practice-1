@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Person } from '../../models/person.model';
 import { CvService } from '../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import {DefaultImagePipe} from "../pipes/default-image.pipe";
 
 @Component({
   selector: 'app-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DefaultImagePipe],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.css',
 })

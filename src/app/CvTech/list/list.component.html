@@ -1,10 +1,12 @@
+
 <ul
   class="max-w-md divide-y divide-pastel2 light:divide-gray-700"
   *ngIf="isAuthenticated"
 >
+
   <app-list-item
     (selected)="personSelected($event)"
-    *ngFor="let person of persons"
+    *ngFor="let person of persons "
     [person]="person"
   ></app-list-item>
 </ul>

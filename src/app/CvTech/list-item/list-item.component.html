@@ -7,13 +7,13 @@
     <div class="flex-shrink-0">
       <img
         class="w-8 h-8 rounded-full"
-        src="{{ person?.imagePath }}"
-        alt="Neil image"
+        src="{{ person?.imagePath|defaultImage }}"
+        alt="{{ person?.firstName|titlecase}}+{{ person?.lastName|titlecase }}"
       />
     </div>
     <div class="flex-1 min-w-0">
       <p class="text-sm font-medium text-gray-900 truncate light:text-white">
-        {{ person?.firstName }} {{ person?.lastName }}
+        {{ person?.firstName|titlecase }} {{ person?.lastName|titlecase }}
       </p>
       <p class="text-sm text-gray-500 truncate light:text-gray-400">
         {{ person?.occupation }}
