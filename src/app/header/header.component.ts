@@ -17,15 +17,20 @@ export class HeaderComponent implements OnInit{
   user: any;
   constructor(private userStore:UserStore) {}
   ngOnInit(): void {
+    this.userStore.loginUser(this.email, this.password).subscribe(
+      (response:any) => {
+        console.log('Login successful:', response);
+        const id = response["id"];
+        this.userStore.setUser({id:id, email:this.email});
+      })
     this.userStore.isAuthenticated().subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
-    this.userStore.loginUser(this.email, this.password).subscribe();
     this.userStore.getUser().subscribe((user) => {
       this.user=user;
 
     });
-
+    console.log(this.isAuthenticated)
   }
   logout() {
     localStorage.clear();
