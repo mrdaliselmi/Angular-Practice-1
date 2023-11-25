@@ -2,8 +2,9 @@ import { Component, OnChanges, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router'; // Import the Router
+//import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import {UserStore} from "../store/user.store"; // Import the Router
 
 @Component({
   selector: 'app-login',
@@ -12,19 +13,25 @@ import { Router } from '@angular/router'; // Import the Router
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
+
 export class LoginComponent implements OnInit {
+
   isAuthenticated: boolean = false;
   email: string = '';
   password: string = '';
   checkboxValue: boolean = false;
+  user: any;
   constructor(
+    private userStore: UserStore,
     private router: Router,
-    private authService: AuthService,
     private toastr: ToastrService,
   ) {}
   ngOnInit(): void {
-    this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
+   this.userStore.isAuthenticated().subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
+    });
+    this.userStore.getUser().subscribe((user) => {
+      this.user=user;
     });
   }
 
@@ -32,13 +39,13 @@ export class LoginComponent implements OnInit {
     if (this.checkboxValue) {
       this.dataSave();
     }
-    console.log(this.email, this.password);
-    this.authService.loginUser(this.email, this.password).subscribe(
-      (response) => {
+    this.userStore.loginUser(this.email, this.password).subscribe(
+      (response:any) => {
         console.log('Login successful:', response);
-        // Access the content of the response here
+        const id = response["id"];
+        this.userStore.setUser({id:id, email:this.email});
         this.router.navigate(['/']);
-      },
+       },
       (error) => {
         console.error('Error during login:', error);
         // Handle errors here
@@ -55,10 +62,5 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('email', this.email);
     localStorage.setItem('password', this.password);
   }
-  logout() {
-    this.authService.logoutUser();
-    this.toastr.success('You have been logged out');
-    this.router.navigate(['/login']);
-    this.isAuthenticated = false;
-  }
+
 }

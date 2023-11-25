@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import {UserStore} from "../store/user.store";
 
 @Component({
   selector: 'app-header',
@@ -10,19 +10,25 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   isAuthenticated: boolean = false;
   email: string = localStorage.getItem('email') || '';
   password: string = localStorage.getItem('password') || '';
-
-  constructor(private authService: AuthService) {}
+  user: any;
+  constructor(private userStore:UserStore) {}
   ngOnInit(): void {
-    this.authService.isAuthenticated$.subscribe(
-      (isAuthenticated) => (this.isAuthenticated = isAuthenticated),
-    );
-    this.authService.loginUser(this.email, this.password).subscribe();
+    this.userStore.isAuthenticated().subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+    });
+    this.userStore.loginUser(this.email, this.password).subscribe();
+    this.userStore.getUser().subscribe((user) => {
+      this.user=user;
+
+    });
+
   }
   logout() {
-    this.authService.logoutUser();
+    localStorage.clear();
+    this.userStore.logoutUser();
   }
 }
