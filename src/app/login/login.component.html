@@ -77,7 +77,16 @@
         password must be at least 4 characters
       </p>
     </div>
-
+    <div>
+      <label for="checkbox">Save data to sessionStorage:</label>
+      <input
+        class="bg-pastel4 m-2"
+        id="checkbox"
+        name="checkbox"
+        type="checkbox"
+        [(ngModel)]="checkboxValue"
+      />
+    </div>
     <button
       (click)="login()"
       type="submit"

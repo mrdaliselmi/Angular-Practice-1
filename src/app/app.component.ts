@@ -10,7 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { NgZone } from '@angular/core';
-
+import { HeaderComponent } from './header/header.component';
+import { StoreRootModule, StoreModule } from '@ngrx/store';
+import { UserState } from './store/user.state';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -26,21 +28,12 @@ import { NgZone } from '@angular/core';
     DetailComponent,
     LoginComponent,
     HttpClientModule,
+    HeaderComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  providers: [],
 })
 export class AppComponent {
   title = 'TP1';
-  isAuthenticated: boolean = false;
-  constructor(
-    private authService: AuthService,
-    private zone: NgZone,
-  ) {
-    this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
-      this.zone.run(() => {
-        this.isAuthenticated = isAuthenticated;
-      });
-    });
-  }
 }
