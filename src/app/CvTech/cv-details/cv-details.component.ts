@@ -4,11 +4,12 @@ import { Person } from '../../models/person.model';
 import { HiringService } from '../services/hiring.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import {DefaultImagePipe} from "../pipes/default-image.pipe";
 
 @Component({
   selector: 'app-cv-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DefaultImagePipe],
   templateUrl: './cv-details.component.html',
   styleUrl: './cv-details.component.css',
 })

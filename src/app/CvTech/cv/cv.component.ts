@@ -17,6 +17,8 @@ export class CvComponent implements OnInit {
   isAuthenticated: boolean = false;
   persons: Person[] = [];
   selectedPerson?: Person;
+  filteredPersons: Person[] = this.persons;
+  ageGroup :string = "";
   constructor(private cvService: CvService) {}
 
   ngOnInit(): void {
@@ -26,5 +28,18 @@ export class CvComponent implements OnInit {
   personSelected(person: Person) {
     console.log('Person selected', person);
     this.selectedPerson = person;
+  }
+  AgeGroup(ageGroup:string){
+    this.ageGroup = ageGroup;
+    console.log(this.ageGroup)
+    if (ageGroup === 'junior') {
+      // @ts-ignore
+      this.filteredPersons = this.persons.filter(person => person.age < 18);
+    } else if (ageGroup === 'senior') {
+      // @ts-ignore
+      this.filteredPersons = this.persons.filter(person => person.age >= 18);
+    } else {
+      this.filteredPersons = this.persons;
+    }
   }
 }

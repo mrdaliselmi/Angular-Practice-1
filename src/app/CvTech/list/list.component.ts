@@ -12,9 +12,12 @@ import {UserStore} from "../../store/user.store";
   styleUrl: './list.component.css',
 })
 export class ListComponent {
+  ageGroup :string = "";
   @Input() persons: Person[] = [];
   @Output() selected = new EventEmitter<Person>();
   isAuthenticated: boolean = false;
+  filteredPersons: Person[] = this.persons;
+
   constructor(private userStore: UserStore) {}
   ngOnInit(): void {
     this.userStore.isAuthenticated().subscribe(
@@ -25,4 +28,5 @@ export class ListComponent {
   personSelected(person: Person) {
     this.selected.emit(person);
   }
+
 }
