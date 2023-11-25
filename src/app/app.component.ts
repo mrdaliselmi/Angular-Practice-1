@@ -8,11 +8,7 @@ import { CvComponent } from './CvTech/cv/cv.component';
 import { DetailComponent } from './CvTech/detail/detail.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './services/auth.service';
-import { NgZone } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
-import { StoreRootModule, StoreModule } from '@ngrx/store';
-import { UserState } from './store/user.state';
 @Component({
   selector: 'app-root',
   standalone: true,

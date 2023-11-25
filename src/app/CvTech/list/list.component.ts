@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListItemComponent } from '../list-item/list-item.component';
 import { Person } from '../../models/person.model';
-import { AuthService } from '../../services/auth.service';
+import {UserStore} from "../../store/user.store";
 
 @Component({
   selector: 'app-list',
@@ -15,12 +15,12 @@ export class ListComponent {
   @Input() persons: Person[] = [];
   @Output() selected = new EventEmitter<Person>();
   isAuthenticated: boolean = false;
-  constructor(private authService: AuthService) {}
+  constructor(private userStore: UserStore) {}
   ngOnInit(): void {
-    this.authService.isAuthenticated$.subscribe(
+    this.userStore.isAuthenticated().subscribe(
       (isAuthenticated) => (this.isAuthenticated = isAuthenticated),
     );
-    // Affiche l'identifiant de l'utilisateur
+
   }
   personSelected(person: Person) {
     this.selected.emit(person);
