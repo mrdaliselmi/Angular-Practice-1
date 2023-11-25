@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnChanges, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   isAuthenticated: boolean = false;
   email: string = '';
   password: string = '';
-
+  checkboxValue: boolean = false;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -29,6 +29,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    if (this.checkboxValue) {
+      this.dataSave();
+    }
+    console.log(this.email, this.password);
     this.authService.loginUser(this.email, this.password).subscribe(
       (response) => {
         console.log('Login successful:', response);
@@ -47,6 +51,10 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  dataSave() {
+    localStorage.setItem('email', this.email);
+    localStorage.setItem('password', this.password);
+  }
   logout() {
     this.authService.logoutUser();
     this.toastr.success('You have been logged out');

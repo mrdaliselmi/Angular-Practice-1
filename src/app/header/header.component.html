@@ -1,0 +1,59 @@
+<nav class="bg-pastel2">
+  <div class="max-w-screen-xl px-4 py-3 mx-auto">
+    <div class="flex items-center">
+      <ul
+        class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm"
+      >
+        <li>
+          <a
+            routerLink="/mini-word"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="text-pastel4 hover:underline"
+            aria-current="page"
+            >Mini Word</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/rainbow"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="text-pastel4 hover:underline"
+            >Rainbow Writer</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/cv"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="text-pastel4 hover:underline"
+            >Cv
+          </a>
+        </li>
+        <li>
+          <a
+            *ngIf="!isAuthenticated"
+            routerLink="/login"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="text-pastel4 hover:underline"
+            >Login</a
+          >
+        </li>
+        <li>
+          <a
+            *ngIf="isAuthenticated"
+            (click)="logout()"
+            routerLink="/login"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="text-pastel4 hover:underline"
+            >Logout</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

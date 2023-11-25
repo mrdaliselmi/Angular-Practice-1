@@ -2,20 +2,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { compareSegments } from '@angular/compiler-cli/src/ngtsc/sourcemaps/src/segment_marker';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  private userIdSubject = new BehaviorSubject<string | null>(null);
-  private userEmailSubject = new BehaviorSubject<string | null>(null);
   private usersUrl = 'https://apilb.tridevs.net/api/Users/login';
 
   isAuthenticated$: Observable<boolean> =
     this.isAuthenticatedSubject.asObservable();
-  userId$: Observable<string | null> = this.userIdSubject.asObservable();
-  userEmail$: Observable<string | null> = this.userEmailSubject.asObservable();
 
   constructor(private http: HttpClient) {
     this.loadUser();
@@ -31,22 +28,20 @@ export class AuthService {
       email: email,
       password: password,
     });
-    response.pipe(
-      // Do any processing you need here
+    response
+      .pipe(
+        tap(() => {
+          this.isAuthenticatedSubject.next(true);
+        }),
+      )
+      .subscribe();
 
-      // Assuming the response indicates a successful login
-      tap(() => {
-        this.isAuthenticatedSubject.next(true);
-        this.userEmailSubject.next(email);
-      }),
-    );
     return response;
   }
 
   logoutUser() {
     // Code to handle logout
+    localStorage.clear();
     this.isAuthenticatedSubject.next(false);
-    this.userIdSubject.next(null);
-    this.userEmailSubject.next(null);
   }
 }
