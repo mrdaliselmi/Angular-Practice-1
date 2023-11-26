@@ -31,7 +31,7 @@
           type="text"
           id="name"
           name="email"
-          [(ngModel)]="email"
+          ngModel
           #emailaddress="ngModel"
           [ngClass]="{
             'bg-red-50 border border-red-500 text-red-900':
@@ -58,7 +58,7 @@
       <input
         required
         minlength="4"
-        [(ngModel)]="password"
+        ngModel
         #pwd="ngModel"
         name="password"
         type="password"
@@ -88,7 +88,7 @@
       />
     </div>
     <button
-      (click)="login()"
+      (click)="login(myForm)"
       type="submit"
       [disabled]="myForm.invalid"
       class="text-white bg-pastel4 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"

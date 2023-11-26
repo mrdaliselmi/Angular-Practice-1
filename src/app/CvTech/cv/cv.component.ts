@@ -19,7 +19,6 @@ export class CvComponent implements OnInit {
   persons: Person[] = [];
   selectedPerson?: Person;
   filteredPersons: Person[] = this.persons;
-  ageGroup :string = "";
   searchPerson: string = '';
   constructor(private cvService: CvService) {}
 
@@ -30,18 +29,15 @@ export class CvComponent implements OnInit {
     this.persons= this.cvService.getPersons(this.searchPerson);
   }
   personSelected(person: Person) {
-    console.log('Person selected', person);
     this.selectedPerson = person;
   }
   AgeGroup(ageGroup:string){
-    this.ageGroup = ageGroup;
-    console.log(this.ageGroup)
     if (ageGroup === 'junior') {
       // @ts-ignore
-      this.filteredPersons = this.persons.filter(person => person.age < 18);
+      this.filteredPersons = this.persons.filter(person => person.age < 40);
     } else if (ageGroup === 'senior') {
       // @ts-ignore
-      this.filteredPersons = this.persons.filter(person => person.age >= 18);
+      this.filteredPersons = this.persons.filter(person => person.age >= 40);
     } else {
       this.filteredPersons = this.persons;
     }

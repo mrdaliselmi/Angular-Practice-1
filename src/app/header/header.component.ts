@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {UserStore} from "../store/user.store";
+import {AuthService} from "../CvTech/services/auth.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +17,7 @@ export class HeaderComponent implements OnInit{
   email: string = localStorage.getItem('email') || '';
   password: string = localStorage.getItem('password') || '';
   user: any;
-  constructor(private userStore:UserStore) {}
+  constructor(private userStore:UserStore,private authService:AuthService,private toaster:ToastrService) {}
   ngOnInit(): void {if(localStorage.getItem('email') && localStorage.getItem('password')){
     this.userStore.loginUser(this.email, this.password).subscribe(
       (response:any) => {
@@ -33,7 +35,16 @@ export class HeaderComponent implements OnInit{
     console.log(this.isAuthenticated)
   }
   logout() {
-    localStorage.clear();
-    this.userStore.logoutUser();
+    this.authService.logout(localStorage.getItem('token')).subscribe(
+      {
+        next: () => {
+          this.userStore.clearUser();
+          localStorage.removeItem('token');
+        },
+        error: (err) => {
+          this.toaster.error('Erreur de déconnexion')
+        },
+      }
+    );
   }
 }
