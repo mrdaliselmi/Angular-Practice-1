@@ -2,7 +2,6 @@ import { Component, OnChanges, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-//import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import {UserStore} from "../store/user.store"; // Import the Router
 
@@ -15,7 +14,6 @@ import {UserStore} from "../store/user.store"; // Import the Router
 })
 
 export class LoginComponent implements OnInit {
-
   isAuthenticated: boolean = false;
   email: string = '';
   password: string = '';
@@ -34,7 +32,6 @@ export class LoginComponent implements OnInit {
       this.user=user;
     });
   }
-
   login() {
     if (this.checkboxValue) {
       this.dataSave();
@@ -44,6 +41,7 @@ export class LoginComponent implements OnInit {
         console.log('Login successful:', response);
         const id = response["id"];
         this.userStore.setUser({id:id, email:this.email});
+        localStorage.setItem('id',id)
         this.router.navigate(['/']);
        },
       (error) => {

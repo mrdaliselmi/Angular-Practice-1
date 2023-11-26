@@ -16,13 +16,13 @@ export class HeaderComponent implements OnInit{
   password: string = localStorage.getItem('password') || '';
   user: any;
   constructor(private userStore:UserStore) {}
-  ngOnInit(): void {
+  ngOnInit(): void {if(localStorage.getItem('email') && localStorage.getItem('password')){
     this.userStore.loginUser(this.email, this.password).subscribe(
       (response:any) => {
         console.log('Login successful:', response);
         const id = response["id"];
         this.userStore.setUser({id:id, email:this.email});
-      })
+      })}
     this.userStore.isAuthenticated().subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
