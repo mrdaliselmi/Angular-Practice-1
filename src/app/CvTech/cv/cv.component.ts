@@ -5,11 +5,12 @@ import { CvDetailsComponent } from '../cv-details/cv-details.component';
 import { Person } from '../../models/person.model';
 import { CvService } from '../services/cv.service';
 import { HiringComponent } from '../hiring/hiring.component';
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-cv',
   standalone: true,
-  imports: [CommonModule, ListComponent, CvDetailsComponent, HiringComponent],
+  imports: [CommonModule, ListComponent, CvDetailsComponent, HiringComponent, FormsModule],
   templateUrl: './cv.component.html',
   styleUrl: './cv.component.css',
 })
@@ -19,12 +20,15 @@ export class CvComponent implements OnInit {
   selectedPerson?: Person;
   filteredPersons: Person[] = this.persons;
   ageGroup :string = "";
+  searchPerson: string = '';
   constructor(private cvService: CvService) {}
 
   ngOnInit(): void {
-    this.persons = this.cvService.getPersons();
+    this.persons = this.cvService.getPersons("");
   }
-
+  search() {
+    this.persons= this.cvService.getPersons(this.searchPerson);
+  }
   personSelected(person: Person) {
     console.log('Person selected', person);
     this.selectedPerson = person;
