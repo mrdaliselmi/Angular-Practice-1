@@ -1,0 +1,13 @@
+<form >
+  <label for="streamOne">Name: </label>
+  <input id="streamOne" type="text" [formControl]="streamOneValue">
+  <label for="streamTwo">Name: </label>
+  <input id="streamTwo" type="text" [formControl]="streamTwoValue">
+
+  <ul>
+    <li>Merge : {{merge$}}</li>
+    <li>Scan : {{scan$}}</li>
+    <li>Reduce : {{reduce$}}</li>
+  </ul>
+
+</form>
