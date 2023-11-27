@@ -6,11 +6,12 @@ import { Person } from '../../models/person.model';
 import { CvService } from '../services/cv.service';
 import { HiringComponent } from '../hiring/hiring.component';
 import {FormsModule} from "@angular/forms";
+import {AutoCompleteComponent} from "../auto-complete/auto-complete.component";
 
 @Component({
   selector: 'app-cv',
   standalone: true,
-  imports: [CommonModule, ListComponent, CvDetailsComponent, HiringComponent, FormsModule],
+  imports: [CommonModule, ListComponent, CvDetailsComponent, HiringComponent, FormsModule, AutoCompleteComponent],
   templateUrl: './cv.component.html',
   styleUrl: './cv.component.css',
 })

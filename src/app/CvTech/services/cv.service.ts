@@ -12,7 +12,7 @@ export class CvService {
     private toastr: ToastrService,
     private apiService: ApiService,
   ) {
-    this.apiService.getUsers().subscribe({
+    this.apiService.getUsers("").subscribe({
       next: (data) => {
         this.handleApiSuccess(data);
       },
@@ -101,8 +101,12 @@ export class CvService {
     }
   }
 
-   getPersons(query: string): any {
-   //todo this.persons filtree;
+   getPersons(search: string): any {
+    this.apiService.getUsers(search).subscribe({
+        next: (data) => {
+          return data;
+        },
+      });
   }
 
   getPersonById(id: number): Person | undefined {
