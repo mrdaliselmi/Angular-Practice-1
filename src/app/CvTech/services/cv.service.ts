@@ -102,11 +102,15 @@ export class CvService {
   }
 
    getPersons(search: string): any {
-    this.apiService.getUsers(search).subscribe({
+   this.apiService.getUsers(search).subscribe({
         next: (data) => {
           return data;
         },
+        error: (error) => {
+          console.log(this.persons);
+        },
       });
+     return this.persons;
   }
 
   getPersonById(id: number): Person | undefined {

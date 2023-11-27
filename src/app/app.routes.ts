@@ -6,12 +6,13 @@ import { DetailComponent } from './CvTech/detail/detail.component';
 import { LoginComponent } from './login/login.component';
 import { MergeScanReduceComponent} from "./CvTech/merge-scan-reduce/merge-scan-reduce.component";
 import {ProductsComponent} from "./CvTech/products/products.component";
+import {cvDetailResolverResolver} from "./resolvers/cv-detail-resolver.resolver";
 
 export const routes: Routes = [
   { path: 'mergescanreduce', component: MergeScanReduceComponent},
   {path: 'products', component: ProductsComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'cv/:id', component: DetailComponent },
+  { path: 'cv/:id', component: DetailComponent,resolve: {person: cvDetailResolverResolver} },
   { path: 'cv', component: CvComponent },
   { path: 'mini-word', component: MiniWordComponent },
   { path: 'rainbow', component: RainbowStyleWriterComponent },

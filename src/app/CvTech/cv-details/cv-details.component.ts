@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Person } from '../../models/person.model';
 import { HiringService } from '../services/hiring.service';
@@ -13,13 +13,15 @@ import {DefaultImagePipe} from "../pipes/default-image.pipe";
   templateUrl: './cv-details.component.html',
   styleUrl: './cv-details.component.css',
 })
-export class CvDetailsComponent {
+export class CvDetailsComponent{
   @Input() person?: Person;
 
   constructor(
     private hiringService: HiringService,
     private router: Router,
   ) {}
+
+
   hire() {
     if (this.person) {
       this.hiringService.hire(this.person);

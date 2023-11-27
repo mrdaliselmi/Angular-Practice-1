@@ -9,6 +9,7 @@ import { DetailComponent } from './CvTech/detail/detail.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
+import {CvService} from "./CvTech/services/cv.service";
 @Component({
   selector: 'app-root',
   standalone: true,
