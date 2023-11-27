@@ -13,10 +13,11 @@ export class ProductsComponent {
   constructor(private apiService: ApiService) {
   }
   limit = 12;
+  skip=0
   productList: any = [];
   show=true;
 
-  products = this.apiService.getProducts(this.limit).subscribe((data) => {
+  products = this.apiService.getProducts(this.limit,this.skip).subscribe((data) => {
     this.productList = data.products;
   })
 
@@ -24,12 +25,14 @@ export class ProductsComponent {
   loadMore() {
     if (this.productList.length+12<100){
       this.limit+=12;
+
     }
     else {
       this.limit=100;
       this.show=false;
     }
-    this.products = this.apiService.getProducts(this.limit).subscribe((data) => {
+    this.skip=this.productList.length;
+    this.products = this.apiService.getProducts(this.limit,this.skip).subscribe((data) => {
       this.productList = data.products;
       console.log(this.productList);
     })
