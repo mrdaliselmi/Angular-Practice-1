@@ -4,7 +4,7 @@ import { MiniWordComponent } from './mini-word/mini-word.component';
 import { RainbowStyleWriterComponent } from './rainbow-style-writer/rainbow-style-writer.component';
 import { DetailComponent } from './CvTech/detail/detail.component';
 import { LoginComponent } from './login/login.component';
-import {MergeScanReduceComponent} from "./CvTech/merge-scan-reduce/merge-scan-reduce.component";
+import { MergeScanReduceComponent} from "./CvTech/merge-scan-reduce/merge-scan-reduce.component";
 
 export const routes: Routes = [
   { path: 'mergescanreduce', component: MergeScanReduceComponent},

@@ -1,13 +1,42 @@
+<div class="mx-auto justify-center lg:mt-20 sm:mt-5 lg:w-2/5 sm:w-4/5">
+
 <form >
-  <label for="streamOne">Name: </label>
-  <input id="streamOne" type="text" [formControl]="streamOneValue">
-  <label for="streamTwo">Name: </label>
-  <input id="streamTwo" type="text" [formControl]="streamTwoValue">
+
+  <div class="mb-6">
+    <div class="relative">
+      <input
+        [formControl]="streamOneValue"
+        id="streamOne"
+        name="streamone"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+        placeholder="Stream One"
+      />
+    </div>
+    <button class="mt-3 text-white bg-red-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" (click)="terminateTwo($event)" >
+       End Stream One
+    </button>
+  </div>
+
+  <div class="mb-6">
+    <div class="relative">
+      <input
+        [formControl]="streamTwoValue"
+        id="streamTwo"
+        name="streamtwo"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+        placeholder="Stream One"
+      />
+    </div>
+    <button class="mt-3 text-white bg-red-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" (click)="terminateTwo($event)" >
+      End Stream Two
+    </button>
+  </div>
 
   <ul>
-    <li>Merge : {{merge$}}</li>
-    <li>Scan : {{scan$}}</li>
-    <li>Reduce : {{reduce$}}</li>
+    <li>Merge : {{mergeValue}}</li>
+    <li>Scan : {{scanValue}}</li>
+    <li>Reduce : {{reduceValue}}</li>
   </ul>
 
 </form>
+</div>
