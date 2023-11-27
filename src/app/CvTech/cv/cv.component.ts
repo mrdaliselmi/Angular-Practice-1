@@ -7,6 +7,7 @@ import { CvService } from '../services/cv.service';
 import { HiringComponent } from '../hiring/hiring.component';
 import {FormsModule} from "@angular/forms";
 import {AutoCompleteComponent} from "../auto-complete/auto-complete.component";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-cv',
@@ -21,10 +22,13 @@ export class CvComponent implements OnInit {
   selectedPerson?: Person;
   filteredPersons: Person[] = this.persons;
   searchPerson: string = '';
-  constructor(private cvService: CvService) {}
+  constructor(private cvService: CvService,private activatedRoute:ActivatedRoute) {}
 
-  ngOnInit(): void {
-    this.persons = this.cvService.getPersons("");
+   ngOnInit(): void{
+this.activatedRoute.data.subscribe(({persons}) => {
+  this.persons = persons;
+});
+    //this.persons = this.cvService.getPersons("");
   }
   search() {
     this.persons= this.cvService.getPersons(this.searchPerson);

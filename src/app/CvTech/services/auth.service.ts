@@ -12,6 +12,7 @@ export class AuthService {
 
 
   login(credentials: any) {
+    console.log(credentials);
     return this.http.post(this.loginLink, credentials);
   }
 

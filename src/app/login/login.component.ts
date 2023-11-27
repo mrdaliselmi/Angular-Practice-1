@@ -34,9 +34,7 @@ export class LoginComponent implements OnInit {
     });
   }
   login(credentials:any) {
-    if (this.checkboxValue) {
-      this.dataSave();
-    }
+
     this.authService.login(credentials).subscribe(
       {
         next: (user:any) => {
@@ -44,14 +42,22 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/cv']);
         },
         error: (err) => {
-          this.toastr.error('Email ou mot de passe incorrect');
+          this.toastr.error('Email ou mot de passe incorrect', 'Erreur',{
+            timeOut: 1000,
+            toastClass:
+              'absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-900 p-4 rounded-md bg-red-200',
+
+          });
         },
       }
     );
+    if (this.checkboxValue) {
+      this.dataSave();
+    }
   }
 
   dataSave() {
-    localStorage.setItem('token', this.user.id);
+    localStorage.setItem('token', this.user?.id);
   }
 
 }
