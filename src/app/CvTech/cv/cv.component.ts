@@ -25,8 +25,10 @@ export class CvComponent implements OnInit {
   constructor(private cvService: CvService,private activatedRoute:ActivatedRoute) {}
 
    ngOnInit(): void{
-
-    this.persons = this.cvService.getPersons("");
+this.activatedRoute.data.subscribe(({persons}) => {
+  this.persons = persons;
+});
+    //this.persons = this.cvService.getPersons("");
   }
   search() {
     this.persons= this.cvService.getPersons(this.searchPerson);
