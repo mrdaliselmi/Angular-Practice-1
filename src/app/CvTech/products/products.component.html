@@ -1,0 +1,12 @@
+<div class="w-full bg-amber-200 rounded-b-lg text-3xl h-14 p-2">
+  Total Product : {{productList.length}}
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-6">
+  <div *ngFor="let product of productList" class="p-2  shadow-2xl">
+    <img class=" rounded-lg" src="{{product.images[0]}}" alt="img">
+  </div>
+</div>
+
+<button class="text-white m-3 bg-amber-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" *ngIf="show" (click)="loadMore()">
+  Show More
+</button>

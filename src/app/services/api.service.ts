@@ -1,25 +1,23 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import {skip} from "rxjs";
 @Injectable({
   providedIn: 'root',
 })
 
 export class ApiService {
   private usersUrl = 'https://apilb.tridevs.net/api/personnes';
+  private productsUrl = 'https://dummyjson.com/products';
   constructor(private http: HttpClient) {}
-  // Create an instance of HttpParams
 
-  getUsers(query: string) {
-    let params = new HttpParams();
+  getUsers(searchTerm: string) {
+    const options = searchTerm !="" ?
+      { params: new HttpParams().set('filter', `{"where":{"name":{"like":"%${searchTerm}%"}}}`) } : {};
+    return this.http.get<any>(this.usersUrl,options);}
 
-   if(query) {params = params.set('where', JSON.stringify({
-      name: {
-        like: query // Replace 'searchTerm' with your actual search term
-      }}));
-    return this.http.get<any>(this.usersUrl,{params});
+  getProducts(limit:number,skip:number  ) {
+    const options={params: new HttpParams().set('limit', `${limit}`).set('skip', `${skip}`)};
+    return this.http.get<any>(this.productsUrl, options);
   }
-  else {return this.http.get<any>(this.usersUrl);}}
-
 
 }

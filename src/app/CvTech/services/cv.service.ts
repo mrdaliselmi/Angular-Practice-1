@@ -101,14 +101,12 @@ export class CvService {
     }
   }
 
-   getPersons(query: string): any {
-    let data: Person[]=[];
-    this.apiService.getUsers(query).subscribe(
-     (response) => {
-       data = response;
-     }
-   );
-    return data;
+   getPersons(search: string): any {
+    this.apiService.getUsers(search).subscribe({
+        next: (data) => {
+          return data;
+        },
+      });
   }
 
   getPersonById(id: number): Person | undefined {

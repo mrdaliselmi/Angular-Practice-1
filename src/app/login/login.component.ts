@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import {UserStore} from "../store/user.store"; // Import the Router
+import {User, UserStore} from "../store/user.store";
+import {AuthService} from "../CvTech/services/auth.service"; // Import the Router
 
 @Component({
   selector: 'app-login',
@@ -15,14 +16,14 @@ import {UserStore} from "../store/user.store"; // Import the Router
 
 export class LoginComponent implements OnInit {
   isAuthenticated: boolean = false;
-  email: string = '';
-  password: string = '';
   checkboxValue: boolean = false;
   user: any;
   constructor(
     private userStore: UserStore,
     private router: Router,
     private toastr: ToastrService,
+    private authService: AuthService
+
   ) {}
   ngOnInit(): void {
    this.userStore.isAuthenticated().subscribe((isAuthenticated) => {
@@ -32,33 +33,25 @@ export class LoginComponent implements OnInit {
       this.user=user;
     });
   }
-  login() {
+  login(credentials:any) {
     if (this.checkboxValue) {
       this.dataSave();
     }
-    this.userStore.loginUser(this.email, this.password).subscribe(
-      (response:any) => {
-        console.log('Login successful:', response);
-        const id = response["id"];
-        this.userStore.setUser({id:id, email:this.email});
-        localStorage.setItem('id',id)
-        this.router.navigate(['/']);
-       },
-      (error) => {
-        console.error('Error during login:', error);
-        // Handle errors here
-        this.toastr.error('Wrong credentials', 'Error', {
-          timeOut: 1000,
-          toastClass:
-            'absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-900 p-4 rounded-md bg-red-300',
-        });
-      },
+    this.authService.login(credentials).subscribe(
+      {
+        next: (user:any) => {
+          this.userStore.setUser({id: user['id'], email: credentials.email});
+          this.router.navigate(['/cv']);
+        },
+        error: (err) => {
+          this.toastr.error('Email ou mot de passe incorrect');
+        },
+      }
     );
   }
 
   dataSave() {
-    localStorage.setItem('email', this.email);
-    localStorage.setItem('password', this.password);
+    localStorage.setItem('token', this.user.id);
   }
 
 }
