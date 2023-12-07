@@ -3,7 +3,7 @@ import {Person} from "../models/person.model";
 import {inject} from "@angular/core";
 import {CvService} from "../CvTech/services/cv.service";
 
-export const cvDetailResolverResolver: ResolveFn<any> =
+export const cvDetailResolverResolver: ResolveFn<Person | null> =
   (route, state) => {
-    return inject(CvService).getPersonById(+route.paramMap.get('id')!);
+    return inject(CvService).getPersonById(+route.paramMap.get('id')!)??null;
 }
