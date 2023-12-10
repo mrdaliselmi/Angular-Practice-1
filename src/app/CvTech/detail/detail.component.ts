@@ -21,10 +21,6 @@ export class DetailComponent implements OnInit {
     private router: Router,
   ) {}
   ngOnInit(): void {
-    //this.activatedRoute.params.subscribe((params) => {
-      //const id = params['id'];
-      //this.person = this.cvService.getPersonById(id);
-    //});
 
      this.activatedRoute.data.subscribe(({person}) => {
       this.person = person;

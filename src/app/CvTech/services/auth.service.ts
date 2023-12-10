@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {NgForm} from "@angular/forms";
+import {BehaviorSubject} from "rxjs";
+import {UserModel} from "../../models/user.model";
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +17,17 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
 
-  login(credentials: any) {
-    console.log(credentials);
+
+
+  login(credentials : {email : string , password : string}) {
     return this.http.post(this.loginLink, credentials);
   }
 
-  logout(token: any) {
+  logout() {
+    const token = localStorage.getItem('token');
+    if (!token) throw new Error('No token found');
     return this.http.post(this.logoutLink + '?access_token=' + token, '');
   }
+
+
 }

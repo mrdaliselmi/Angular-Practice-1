@@ -15,6 +15,8 @@ export class ApiService {
       { params: new HttpParams().set('filter', `{"where":{"name":{"like":"%${searchTerm}%"}}}`) } : {};
     return this.http.get<any>(this.usersUrl,options);}
 
+
+
   getProducts(limit:number,skip:number  ) {
     const options={params: new HttpParams().set('limit', `${limit}`).set('skip', `${skip}`)};
     return this.http.get<any>(this.productsUrl, options);
