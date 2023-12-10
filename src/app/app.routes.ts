@@ -15,7 +15,7 @@ import {UpdateCvComponent} from "./CvTech/update-cv/update-cv.component";
 export const routes: Routes = [
   { path: 'mergescanreduce', component: MergeScanReduceComponent},
   {path: 'products', component: ProductsComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', loadComponent:()=>import('./login/login.component').then(m=>m.LoginComponent) },
   { path: 'cv/:id', component: DetailComponent,resolve: {person: cvDetailResolverResolver} },
   { path: 'cv', component: CvComponent,resolve: {persons: cvResolver} },
   { path: 'mini-word', component: MiniWordComponent },
