@@ -13,7 +13,7 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit{
-  isAuthenticated: boolean = false;
+  isAuthenticated: boolean = !!localStorage.getItem('token');
   constructor(private userStore: UserStore, private authService: AuthService, private toaster: ToastrService) {
 
     }

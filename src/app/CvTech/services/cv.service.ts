@@ -2,15 +2,19 @@ import { Injectable } from '@angular/core';
 import { Person } from '../../models/person.model';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../services/api.service';
+import {catchError, Observable, throwError} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root',
 })
 export class CvService {
   private persons: Person[] = [];
+  apiurl = "https://apilb.tridevs.net/api/personnes"
   constructor(
     private toastr: ToastrService,
     private apiService: ApiService,
+    private http: HttpClient,
   ) {
     this.apiService.getUsers("").subscribe({
       next: (data) => {
@@ -113,26 +117,47 @@ export class CvService {
      return this.persons;
   }
 
-  getPersonById(id: number): Person | undefined {
-    return this.persons.find((person) => person.id == id);
+  getPersonById(id: number): Observable<Person> {
+    return this.http.get<Person>(this.apiurl + '/' + id).pipe(
+      catchError(
+        (error: any) => {
+          return throwError(error);
+        }
+      )
+    );
   }
 
-  deletePersonById(id: number): boolean {
-    const index = this.persons.findIndex((person) => person.id == id);
-    if (index === -1) {
-      return false;
-    } else {
-      this.toastr.success(
-        `${this.persons[index]['firstName']}'s cv deleted successfully`,
-        '',
-        {
-          timeOut: 1000,
-          toastClass:
-            'absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-900 p-4 rounded-md bg-green-300',
-        },
-      );
-      this.persons.splice(index, 1);
-      return true;
-    }
+  deletePersonById(id: number): Observable<any> {
+    return this.http.delete<any>(this.apiurl + '/' + id).pipe(
+      catchError(
+        (error: any) => {
+          return throwError(error);
+        }
+      )
+    );
+  }
+
+  addPerson(person: any): Observable<Person> {
+    const token = localStorage.getItem('token');
+    if (!token) throw new Error('No token found');
+    return this.http.post<Person>(this.apiurl+'?access_token='+token, person).pipe(
+      catchError(
+        (error: any) => {
+          return throwError(error);
+        }
+      )
+    );
+  }
+
+  updatePerson(person: Partial<Person>): Observable<Person> {
+    const token = localStorage.getItem('token');
+    if (!token) throw new Error('No token found');
+    return this.http.put<Person>(this.apiurl+'?access_token='+token, person).pipe(
+      catchError(
+        (error: any) => {
+          return throwError(error);
+        }
+      )
+    );
   }
 }
