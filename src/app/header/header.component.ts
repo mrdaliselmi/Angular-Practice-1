@@ -14,37 +14,34 @@ import {ToastrService} from "ngx-toastr";
 })
 export class HeaderComponent implements OnInit{
   isAuthenticated: boolean = false;
-  email: string = localStorage.getItem('email') || '';
-  password: string = localStorage.getItem('password') || '';
-  user: any;
-  constructor(private userStore:UserStore,private authService:AuthService,private toaster:ToastrService) {}
-  ngOnInit(): void {if(localStorage.getItem('email') && localStorage.getItem('password')){
-    this.userStore.loginUser(this.email, this.password).subscribe(
-      (response:any) => {
-        console.log('Login successful:', response);
-        const id = response["id"];
-        this.userStore.setUser({id:id, email:this.email});
-      })}
+  constructor(private userStore: UserStore, private authService: AuthService, private toaster: ToastrService) {
+
+    }
+
+  ngOnInit(): void {
     this.userStore.isAuthenticated().subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
-    this.userStore.getUser().subscribe((user) => {
-      this.user=user;
-
-    });
-    console.log(this.isAuthenticated)
   }
+
+
   logout() {
-    this.authService.logout(localStorage.getItem('token')).subscribe(
-      {
-        next: () => {
-          this.userStore.clearUser();
-          localStorage.removeItem('token');
-        },
-        error: (err) => {
-          this.toaster.error('Erreur de déconnexion')
-        },
-      }
-    );
+    this.authService.logout().subscribe({
+      next: () => {
+        localStorage.removeItem('token');
+        this.userStore.clearUser();
+        this.toaster.success(
+          'Logout successful',
+          'Success',
+          {
+            timeOut: 1000,
+            toastClass:
+              'absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-900 p-4 rounded-md bg-green-200',
+          }
+        )      },
+      error: (err) => {
+        this.toaster.error('Logout failed');
+      },
+    })
   }
 }

@@ -1,37 +1,24 @@
 import {BehaviorSubject, map, Observable} from 'rxjs';
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-export interface User {
-  id: string;
-  email: string;
-}
+import {UserModel} from "../models/user.model";
+
 @Injectable({
   providedIn: 'root',
 })
 export class UserStore {
-  private readonly user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  private readonly user$: BehaviorSubject<UserModel | null> = new BehaviorSubject<UserModel | null>(null);
   private readonly isAuthenticated$: Observable<boolean> = this.user$.pipe(
     map(user => user !== null)
   );
-  private usersUrl = 'https://apilb.tridevs.net/api/Users/login';
   constructor(private http: HttpClient) {
 
   }
-  public loginUser(email: string, password: string) {
-    return(this.http.post(this.usersUrl, {
-      email: email,
-      password: password,
-    }));
-
-  }
-  public logoutUser() {
-    this.clearUser();
-  }
-  public getUser(): Observable<User | null> {
+   public getUser(): Observable<UserModel | null> {
     return this.user$;
   }
 
-  public setUser(user: User): void {
+  public setUser(user: UserModel): void {
     this.user$.next(user);
   }
 
