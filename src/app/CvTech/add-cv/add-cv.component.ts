@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators} 
 import {CvService} from "../services/cv.service";
 import {ToastrService} from "ngx-toastr";
 import {Observable} from 'rxjs';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-cv',
@@ -14,7 +15,7 @@ import {Observable} from 'rxjs';
 })
 export class AddCvComponent  {
 
-  constructor(private formBuilder: FormBuilder, private cvService: CvService, private toastr: ToastrService) {
+  constructor(private formBuilder: FormBuilder, private cvService: CvService, private toastr: ToastrService,private router: Router) {
   }
 
 
@@ -46,6 +47,7 @@ export class AddCvComponent  {
               'absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-900 p-4 rounded-md bg-green-200',
           });
           this.addCvForm.reset();
+          this.router.navigate(['/cv']);
         },
         error: (error) => {
           this.toastr.error('Person not added', 'Error', {

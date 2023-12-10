@@ -15,7 +15,7 @@ export class ListComponent {
   ageGroup :string = "";
   @Input() persons: Person[] = [];
   @Output() selected = new EventEmitter<Person>();
-  isAuthenticated: boolean = false;
+  isAuthenticated: boolean = !!localStorage.getItem('token');
   filteredPersons: Person[] = this.persons;
 
   constructor(private userStore: UserStore) {}

@@ -29,7 +29,7 @@
         (selected)="personSelected($event)"
         [persons]="filteredPersons"
       ></app-list>
-      <div class="flex items-center justify-center">
+      <div *ngIf="isAuthenticated" class="flex items-center justify-center">
         <button class="bg-pastel4 m-2 hover:bg-pastel3 text-pastel2 font-bold py-2 px-4 rounded-full" routerLink="/addCv" >Add CV</button>
       </div>
 
