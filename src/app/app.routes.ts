@@ -8,6 +8,9 @@ import { MergeScanReduceComponent} from "./CvTech/merge-scan-reduce/merge-scan-r
 import {ProductsComponent} from "./CvTech/products/products.component";
 import {cvDetailResolverResolver} from "./resolvers/cv-detail-resolver.resolver";
 import {cvResolver} from "./resolvers/cv.resolver";
+import {AddCvComponent} from "./CvTech/add-cv/add-cv.component";
+import {addCvDeactivateGuard} from "./guards/add-cv-deactivate.guard";
+import {UpdateCvComponent} from "./CvTech/update-cv/update-cv.component";
 
 export const routes: Routes = [
   { path: 'mergescanreduce', component: MergeScanReduceComponent},
@@ -17,6 +20,8 @@ export const routes: Routes = [
   { path: 'cv', component: CvComponent,resolve: {persons: cvResolver} },
   { path: 'mini-word', component: MiniWordComponent },
   { path: 'rainbow', component: RainbowStyleWriterComponent },
+  { path: 'addCv', component: AddCvComponent, canDeactivate: [addCvDeactivateGuard] },
+  { path: 'updateCv', component: UpdateCvComponent },
   { path: '', redirectTo: '/cv', pathMatch: 'full' },
   { path: '**', redirectTo: '/cv', pathMatch: 'full' },
 ];

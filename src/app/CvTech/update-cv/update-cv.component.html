@@ -1,0 +1,83 @@
+<div class="mx-auto justify-center lg:mt-20 sm:mt-5 lg:w-2/5 sm:w-4/5">
+  <form [formGroup]="updateCvForm" #myForm="ngForm">
+
+    <div class="mb-6">
+      <label class="block mb-2 text-sm font-medium text-gray-900">
+        FirstName
+      </label>
+      <input
+        type="text"
+        formControlName="firstname"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+      />
+    </div>
+
+    <div class="mb-6">
+      <label class="block mb-2 text-sm font-medium text-gray-900">
+        LastName
+      </label>
+      <input
+        type="text"
+        formControlName="name"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+      />
+    </div>
+
+    <div class="mb-6">
+      <label class="block mb-2 text-sm font-medium text-gray-900">
+        Age
+      </label>
+      <input
+        type="number"
+        formControlName="age"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+      />
+    </div>
+
+    <div class="mb-6">
+      <label class="block mb-2 text-sm font-medium text-gray-900">
+        CIN
+      </label>
+      <input
+        type="number"
+        formControlName="cin"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+      />
+    </div>
+
+    <div class="mb-6">
+      <label class="block mb-2 text-sm font-medium text-gray-900">
+        Job
+      </label>
+      <input
+        type="text"
+        formControlName="job"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+      />
+    </div>
+
+    <div class="mb-6">
+      <label class="block mb-2 text-sm font-medium text-gray-900">
+        Image Path
+      </label>
+      <input
+        type="file"
+        formControlName="path"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+      />
+    </div>
+
+
+    <button
+      (click)="onSubmit()"
+      type="submit"
+      [disabled]="myForm.invalid"
+      class="text-white bg-pastel4 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+    >
+      Submit
+    </button>
+
+  </form>
+
+
+</div>

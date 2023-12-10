@@ -7,12 +7,12 @@ import { CvService } from '../services/cv.service';
 import { HiringComponent } from '../hiring/hiring.component';
 import {FormsModule} from "@angular/forms";
 import {AutoCompleteComponent} from "../auto-complete/auto-complete.component";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-cv',
   standalone: true,
-  imports: [CommonModule, ListComponent, CvDetailsComponent, HiringComponent, FormsModule, AutoCompleteComponent],
+  imports: [CommonModule, ListComponent, CvDetailsComponent, HiringComponent, FormsModule, AutoCompleteComponent, RouterLink],
   templateUrl: './cv.component.html',
   styleUrl: './cv.component.css',
 })
