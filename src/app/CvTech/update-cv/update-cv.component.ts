@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CvService} from "../services/cv.service";
 import {Person} from "../../models/person.model";
 import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -17,7 +17,7 @@ export class UpdateCvComponent {
   person?: Person;
   name:string="";
 
-  constructor(private activatedRoute: ActivatedRoute, private cvService: CvService, private formBuilder: FormBuilder, private toastr: ToastrService) {
+  constructor(private activatedRoute: ActivatedRoute, private cvService: CvService, private formBuilder: FormBuilder, private toastr: ToastrService,private router:Router) {
   }
 
   ngOnInit(): void {
@@ -44,6 +44,7 @@ export class UpdateCvComponent {
             toastClass:
               'absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-900 p-4 rounded-md bg-green-200',
           });
+          this.router.navigate(['/cv']);
         },
         error: (error) => {
           this.toastr.error('Person not updated', 'Error', {

@@ -21,7 +21,7 @@ export class ListComponent {
   constructor(private userStore: UserStore) {}
   ngOnInit(): void {
     this.userStore.isAuthenticated().subscribe(
-      (isAuthenticated) => (this.isAuthenticated = isAuthenticated),
+      (isAuthenticated) => (this.isAuthenticated = isAuthenticated || !!localStorage.getItem('token')),
     );
 
   }

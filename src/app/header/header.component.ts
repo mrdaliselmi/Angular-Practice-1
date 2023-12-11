@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
     this.userStore.isAuthenticated().subscribe((isAuthenticated) => {
-      this.isAuthenticated = isAuthenticated;
+      this.isAuthenticated = isAuthenticated || !!localStorage.getItem('token');
     });
   }
 

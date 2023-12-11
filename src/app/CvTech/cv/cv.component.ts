@@ -33,10 +33,6 @@ export class CvComponent implements OnInit {
 
   }
 
-  search() {
-    this.persons = this.cvService.getPersons(this.searchPerson);
-  }
-
   personSelected(person: Person) {
     this.selectedPerson = person;
   }

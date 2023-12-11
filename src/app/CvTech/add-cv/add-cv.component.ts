@@ -29,12 +29,6 @@ export class AddCvComponent  {
     path: new FormControl(null),
   });
 
-  canExit(component: AddCvComponent): boolean {
-    if (component.addCvForm.dirty) {
-      return confirm('Are you sure you want to discard your changes?');
-    }
-    return true;
-  }
 
 
   onSubmit() {

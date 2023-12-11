@@ -15,7 +15,6 @@ import {AuthService} from "../CvTech/services/auth.service";
 })
 
 export class LoginComponent implements OnInit {
-  isAuthenticated: boolean = false;
   checkboxValue: boolean = false;
   constructor(
     private userStore: UserStore,
