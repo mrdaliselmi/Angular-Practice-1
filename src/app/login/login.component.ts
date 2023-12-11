@@ -25,10 +25,9 @@ export class LoginComponent implements OnInit {
 
   ) {}
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.router.navigate(['/cv']);
-    }
+    this.userStore.isAuthenticated().subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+    });
   }
   login(credentials:NgForm) {
     this.authService.login(credentials.form.value).subscribe(
@@ -37,6 +36,7 @@ export class LoginComponent implements OnInit {
           this.userStore.setUser({id: user['id'], email: credentials.form.value.email});
           if (this.checkboxValue) {
             localStorage.setItem('token', user['id'])
+            localStorage.setItem('email', credentials.form.value.email)
           }
           this.router.navigate(['/cv']);
         },

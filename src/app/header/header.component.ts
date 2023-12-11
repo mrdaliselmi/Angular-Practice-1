@@ -19,6 +19,11 @@ export class HeaderComponent implements OnInit{
     }
 
   ngOnInit(): void {
+    const email = localStorage.getItem('email');
+    const id = localStorage.getItem('token');
+    if (id&&email ) {
+      this.userStore.setUser({id: id, email: email});
+    }
     this.userStore.isAuthenticated().subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
